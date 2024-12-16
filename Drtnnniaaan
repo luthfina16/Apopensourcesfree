@@ -17,8 +17,7 @@ sudo ls -all ~/Library/LaunchAgents/
 Launchd also runs SystemStarter during boot, which loads legacy third-party OSX startup items that can be viewed with 2 commands:
 sudo ls -all /System/Library/StartupItems/
 sudo ls -all /Library/StartupItems/
-
-Login Items are started at the very end of the user’s login and can be found with the next 2 commands:
+https://objects.githubusercontent.com/github-production-release-asset-2e65be/419075997/bba2fae2-1222-4532-a2bd-1dfcdac73ef3?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241216%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241216T062932Z&X-Amz-Expires=300&X-Amz-Signature=9779a82e1b15b113989beff6a81acf1ff746c94d2b5d8edde3f16ff997b4ca62&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3DApp.Eraser-1.0.0-universal.dmg&response-content-type=application%2Foctet-streamLogin Items are started at the very end of the user’s login and can be found with the next 2 commands:
 sudo ls -all ~/Library/Preferences/com.apple.loginitems.plist
 sudo nano /private/var/db/launchd.db/com.apple.launchd.peruser.501/overrides.plist
 +++ How to disable unneeded services from running on each startup? +++
