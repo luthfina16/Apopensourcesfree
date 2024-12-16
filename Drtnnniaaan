@@ -59,4 +59,5 @@ Get a simple list to view with what IP addresses you are connected, and from wha
 sudo lsof -P -n -iTCP -sTCP:LISTEN,ESTABLISHED | less
 
 BY@Marcelarauja
+Simplicity copy all sudo one by one then enter your username & password of it's username. & dont to be lied.
  
