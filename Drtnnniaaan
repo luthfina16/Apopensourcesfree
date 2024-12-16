@@ -1,0 +1,63 @@
+(chiina 1srt)
+System process daemons that are system-wide provided by mac os x are described by launchd preference files that can be showed with the command:
+sudo ls -all /System/Library/LaunchDaemons/
+
+Third party process daemons that are system-wide provided by the administrator are described by preference files that can be showed with the command:
+sudo ls -all /Library/LaunchDaemons/
+
+Launch Agents that are per-user provided by mac os x usually loaded when the user logs in. Those provided by the system can be found with:
+sudo ls -all /System/Library/LaunchAgents/
+
+Launch Agents that are per-user provided by the administrator and usually loaded when the user logs in. Those provided by the system can be found with:
+sudo ls -all /Library/LaunchAgents/
+
+Launch Agents that are per-user provided by the user and usually loaded when the user logs in. Those provided by the system can be found with:
+sudo ls -all ~/Library/LaunchAgents/
+
+Launchd also runs SystemStarter during boot, which loads legacy third-party OSX startup items that can be viewed with 2 commands:
+sudo ls -all /System/Library/StartupItems/
+sudo ls -all /Library/StartupItems/
+
+Login Items are started at the very end of the user’s login and can be found with the next 2 commands:
+sudo ls -all ~/Library/Preferences/com.apple.loginitems.plist
+sudo nano /private/var/db/launchd.db/com.apple.launchd.peruser.501/overrides.plist
++++ How to disable unneeded services from running on each startup? +++
+
+You need to use the launchctl command as follows:
+sudo launchctl unload -w /path/to/.plist/file
+sudo launchctl unload -w /System/Library/LaunchDaemons/file.plist
+In this example, you are disabling the Netbios service, enter:
+sudo launchctl unload -w System/Library/LaunchDaemons/com.apple.netbiosd.plist
+Disable IPv6 for Ethernet:
+sudo networksetup -setv6off Ethernet
+
+Disable IPv6 for Wi-Fi:
+sudo networksetup -setv6off Wi-Fi
+
+Disable mDNSresponder (Not working for OS X Yosemite 10.10 and newer)
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.mDNSResponder.plist
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.mDNSResponderHelper.plist
+Disable Discoveryd (replacement for mDNSresponder) only for 10.10 Yosemite and newer.
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.discoveryd.plist
+Disable Cups 2.0
+sudo sh -c ‘echo “Sandboxing Off” >> /etc/cups/cups-files.conf’
+
+Disable imclient (Facetime)
+sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.imagent.plist
+Disable notification center, with these 2 commands:
+sudo defaults write /System/Library/LaunchAgents/com.apple.notificationcenterui KeepAlive -bool false
+sudo killall NotificationCenter
+
+Disable Apple push notification:
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.apsd.plist
+Disable Calender agent
+sudo launchctl unload -w /System/Library/LaunchAgents/com.apple.CalendarAgent.plist
+How to check if the unloaded service is still running (Replace NAME with anything you want)
+sudo launchctl list | grep NAME
+
+Get a simple list to view with what IP addresses you are connected, and from what program the connection is coming:
+sudo lsof -P -n -iTCP -sTCP:LISTEN,ESTABLISHED | less
+
+BY@Marcelarauja
+Simplicity copy all sudo one by one then enter your username & password of it's username. & dont to be lied.
+ 
